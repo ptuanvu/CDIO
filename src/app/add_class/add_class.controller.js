@@ -6,7 +6,7 @@
     .controller('AddClassController', AddClassController);
 
   /** @ngInject */
-  function AddClassController($timeout, $scope) {
+  function AddClassController() {
     var vm = this;
 
     vm.class = {"name":"fill", "goals":"test"}

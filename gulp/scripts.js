@@ -19,6 +19,8 @@ gulp.task('scripts', function() {
 });
 
 function buildScripts() {
+  path.join(conf.paths.src, '/bower_components/**/*.angular.js');
+  path.join(conf.paths.src, '/bower_components/**/*.js');
   return gulp.src(path.join(conf.paths.src, '/app/**/*.js'))
     .pipe($.eslint())
     .pipe($.eslint.format())

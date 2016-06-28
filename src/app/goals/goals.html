@@ -4,27 +4,36 @@
 
     <div class="layout" layout-align="center end">
       <div class="flex" flex="60">
-        <md-card md-theme="default" ng-repeat="g in goals.goals">
-            <p class="goals-variables">{{ g }}</p>
+        <md-card md-theme="default" ng-repeat="g in goals.ogoals.hits">
+            <p class="goals-variables">{{ g._source.title }}</p>
         </md-card>
+
+        <form>
+          <div>
+            <md-input-container class="input-form md-docs-dark-theme md-input-has-value layout" layout-fill>
+              <label for="input_23">Tên mục tiêu môn học: </label>
+              <input id="input_23" class="ng-pristine ng-valid md-input ng-not-empty ng-touched"
+                     type="text" ng-model="goals.newgoal" aria-invalid="false"> <div class="md-errors-spacer"></div> <br />
+            </md-input-container>
+          </div>
+
+          <md-input-container class="md-docs-dark-theme md-input-has-value">
+            <input id="input_24" value="Submit" ng-click="goals.addGoals()" class="md-input ng-touched md-raised md-primary md-button md-ink-ripple"
+                   type="submit"> <br />
+          </md-input-container>
+
+        </form>
       </div>
+
+
+
     </div>
 
     <br />
-    <form>
-      <md-input-container class="md-docs-dark-theme md-input-has-value">
-        <label for="input_23">Tên mục tiêu môn học: </label>
-        <input id="input_23" class="ng-pristine ng-valid md-input ng-not-empty ng-touched"
-          type="text" ng-model="goals.newgoal" aria-invalid="false"> <div class="md-errors-spacer"></div> <br />
-      </md-input-container>
-      <md-input-container class="md-docs-dark-theme md-input-has-value">
-        <input id="input_24" value="Submit" ng-click="goals.addGoals()" class="md-input ng-touched md-raised md-primary md-button md-ink-ripple"
-          type="submit"> <br />
-      </md-input-container>
 
-    </form>
-    <pre>class = {{goals.newgoal | json}}</pre>
-    <pre>class = {{goals.goals | json}}</pre>
+    <pre>goal = {{goals.newgoal | json}}</pre>
+    <pre>goals = {{goals.ogoals | json}}</pre>
+    <pre>hits = {{goals.hit}}</pre>
   </md-content>
 
 </div>

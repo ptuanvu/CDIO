@@ -1,0 +1,34 @@
+<md-dialog aria-label="Goals" ng-cloak flex="60">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Goals</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="gdl.cancel()">
+          <md-icon md-svg-icon="../../assets/ic_close_black_24px.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <md-input-container class="md-block">
+          <label>ID</label>
+          <input type="text" ng-model="gdl.goal.id">
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Parrent ID</label>
+          <input type="text" ng-model="gdl.goal.parent">
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Content</label>
+          <input type="text" ng-model="gdl.goal.content">
+        </md-input-container>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="gdl.create(gdl.goal)" class="md-raised md-primary" md-auto-focus>OK</md-button>
+      <md-button ng-click="gdl.cancel()" class="md-raised md-warn">Cancel</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

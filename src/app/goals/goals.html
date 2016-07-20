@@ -1,39 +1,81 @@
-<div class="main-content" layout-fill>
+<div class="main-content md-block" layout="column" layout-fill>
   <h1>Thêm xóa sửa mục tiêu môn học</h1><br />
-  <md-content>
-
-    <div class="layout" layout-align="center end">
-      <div class="flex" flex="60">
-        <md-card md-theme="default" ng-repeat="g in goals.ogoals.hits">
-            <p class="goals-variables">{{ g._source.title }}</p>
-        </md-card>
-
-        <form>
-          <div>
-            <md-input-container class="input-form md-docs-dark-theme md-input-has-value layout" layout-fill>
-              <label for="input_23">Tên mục tiêu môn học: </label>
-              <input id="input_23" class="ng-pristine ng-valid md-input ng-not-empty ng-touched"
-                     type="text" ng-model="goals.newgoal" aria-invalid="false"> <div class="md-errors-spacer"></div> <br />
-            </md-input-container>
-          </div>
-
-          <md-input-container class="md-docs-dark-theme md-input-has-value">
-            <input id="input_24" value="Submit" ng-click="goals.addGoals()" class="md-input ng-touched md-raised md-primary md-button md-ink-ripple"
-                   type="submit"> <br />
-          </md-input-container>
-
-        </form>
+  <md-content class="md-block" flex="100">
+    <div class="layout" layout-align="center center" layout="column">
+      <div flex><h2>Danh sach muc tieu mon hoc</h2></div>
+    </div>
+    <div class="table_row" layout="row" flex>
+      <div flex="10" class="table_cell">
+        ID
       </div>
-
-
-
+      <div flex="10" class="table_cell">
+        Parrent ID
+      </div>
+      <div class="table_cell" flex> Content</div>
+      <div class="table_cell">
+        Operations
+      </div>
+    </div>
+    <div class="table_row" layout="row" flex ng-repeat="g in goals.ogoals.hits | orderBy:'_id'">
+      <div flex="10" class="table_cell">
+        {{g["_id"]}}
+      </div>
+      <div flex="10" class="table_cell">
+        {{g._source.parent}}
+      </div>
+      <div class="table_cell" flex> {{ g._source.content }}</div>
+      <div class="table_cell">
+        <md-button class="md-icon-button">
+          <md-icon md-svg-icon="../../assets/ic_edit_black_24px.svg"></md-icon>
+        </md-button>
+        <md-button ng-click="goals.deleteGoals(g._id, $event)" class="md-icon-button">
+          <md-icon md-svg-icon="../../assets/ic_delete_black_24px.svg"></md-icon>
+        </md-button>
+      </div>
+    </div>
+    <div flex ng-click="goals.showDialog($event)" layout-align="center center" layout="row">
+      <md-button class="md-fab" aria-label="Add">
+        <md-icon md-svg-src="../../assets/ic_add_black_24px.svg"></md-icon>
+      </md-button>
     </div>
 
-    <br />
-
-    <pre>goal = {{goals.newgoal | json}}</pre>
-    <pre>goals = {{goals.ogoals | json}}</pre>
-    <pre>hits = {{goals.hit}}</pre>
+    {{goals.hits2}}
   </md-content>
+
+  <!--<md-content>-->
+
+
+  <!--<div class="layout" layout-align="center end">-->
+  <!--<div class="flex" flex="60">-->
+  <!--<md-card md-theme="default" ng-repeat="g in goals.ogoals.hits">-->
+  <!--<p class="goals-variables">{{ g._source.title }}</p>-->
+  <!--</md-card>-->
+
+  <!--<form>-->
+  <!--<div>-->
+  <!--<md-input-container class="input-form md-docs-dark-theme md-input-has-value layout" layout-fill>-->
+  <!--<label for="input_23">Tên mục tiêu môn học: </label>-->
+  <!--<input id="input_23" class="ng-pristine ng-valid md-input ng-not-empty ng-touched"-->
+  <!--type="text" ng-model="goals.newgoal" aria-invalid="false"> <div class="md-errors-spacer"></div> <br />-->
+  <!--</md-input-container>-->
+  <!--</div>-->
+
+  <!--<md-input-container class="md-docs-dark-theme md-input-has-value">-->
+  <!--<input id="input_24" value="Submit" ng-click="goals.showDialog()" class="md-input ng-touched md-raised md-primary md-button md-ink-ripple"-->
+  <!--type="submit"> <br />-->
+  <!--</md-input-container>-->
+
+  <!--</form>-->
+  <!--</div>-->
+
+  <!--</div>-->
+
+  <!--<br />-->
+
+  <!--&lt;!&ndash;<pre>goal = {{goals.newgoal | json}}</pre>&ndash;&gt;-->
+  <!--&lt;!&ndash;<pre>goals = {{goals.ogoals | json}}</pre>&ndash;&gt;-->
+  <!--&lt;!&ndash;<pre>hits = {{goals.hit}}</pre>&ndash;&gt;-->
+  <!--<pre>{{goals.goal | json}}</pre>-->
+  <!--</md-content>-->
 
 </div>

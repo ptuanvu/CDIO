@@ -24,7 +24,12 @@
         templateUrl: 'app/goals/goals.html',
         controller: 'GoalsController',
         controllerAs: 'goals'
-      });
+      }).state('syllabus', {
+      url: '/syllabus',
+      templateUrl: 'app/syllabus/syllabus.html',
+      controller: 'SyllabusController',
+      controllerAs: 'syl'
+    });
 
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);

@@ -4,6 +4,26 @@
     <div class="layout" layout-align="center center" layout="column">
       <div flex><h2>Danh sach muc tieu mon hoc</h2></div>
     </div>
+    <md-autocomplete
+      ng-disabled="false"
+      md-no-cache="goals.noCache"
+      md-selected-item="goals.selectedItem"
+      md-search-text-change="goals.searchTextChange(ctrl.searchText)"
+      md-search-text="goals.searchText"
+      md-selected-item-change="goals.selectedItemChange(item)"
+      md-items="item in goals.querySearch(goals.searchText)"
+      md-item-text="item.display"
+      md-min-length="0"
+      placeholder="Tìm kiếm theo tên mục tiêu môn học?">
+      <md-item-template>
+        <span md-highlight-text="goals.searchText" md-highlight-flags="^i">{{item.display}}</span>
+      </md-item-template>
+      <md-not-found>
+        Không tìm thấy dữ liệu "{{goals.searchText}}" .
+        <!--<a ng-click="goals.newState(goals.searchText)">Create a new one!</a>-->
+      </md-not-found>
+    </md-autocomplete>
+    <br>
     <div class="table_row" layout="row" flex>
       <div flex="10" class="table_cell">
         ID
@@ -16,7 +36,7 @@
         Operations
       </div>
     </div>
-    <div class="table_row" layout="row" flex ng-repeat="g in goals.ogoals.hits | orderBy:'_id'">
+    <div class="table_row" layout="row" flex ng-repeat="g in goals.goalsk | orderBy:'_id'">
       <div flex="10" class="table_cell">
         {{g["_id"]}}
       </div>
@@ -25,21 +45,24 @@
       </div>
       <div class="table_cell" flex> {{ g._source.content }}</div>
       <div class="table_cell">
-        <md-button class="md-icon-button">
+        <md-button aria-label="btn" ng-click="goals.showDialog(g ,$event)" class="md-icon-button">
           <md-icon md-svg-icon="../../assets/ic_edit_black_24px.svg"></md-icon>
         </md-button>
-        <md-button ng-click="goals.deleteGoals(g._id, $event)" class="md-icon-button">
+        <md-button aria-label="btn2" ng-click="goals.deleteGoals(g._id, $event)" class="md-icon-button">
           <md-icon md-svg-icon="../../assets/ic_delete_black_24px.svg"></md-icon>
         </md-button>
       </div>
     </div>
-    <div flex ng-click="goals.showDialog($event)" layout-align="center center" layout="row">
-      <md-button class="md-fab" aria-label="Add">
+    <div flex layout-align="center center" layout="row">
+      <md-button ng-click="goals.showDialog(undefined ,$event)"  class="md-fab" aria-label="Add">
         <md-icon md-svg-src="../../assets/ic_add_black_24px.svg"></md-icon>
       </md-button>
-    </div>
 
-    {{goals.hits2}}
+      <md-button ng-click="goals.refresh()"  class="md-fab md-primary" aria-label="Add">
+        <md-icon md-svg-src="../../assets/ic_refresh_black_24px.svg"></md-icon>
+      </md-button>
+    </div>
+    <!--<pagination page="goals.page" size="goals.size" total="goals.total"></pagination>-->
   </md-content>
 
   <!--<md-content>-->

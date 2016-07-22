@@ -1,0 +1,29 @@
+<!-- items being paged -->
+<div ng-repeat="item in vm.items">Item {{item}}</div>
+<div layout="row">
+  <!-- pager -->
+  <div ng-if="vm.pager.pages.length" layout="row" flex class="pagination">
+    <md-button class="md-raised md-primary" ng-click="vm.setPage(1)" ng-class="{disabled:vm.pager.currentPage === 1}">First</md-button>
+    <md-button class="md-raised md-primary" ng-click="vm.setPage(vm.pager.currentPage - 1)" ng-class="{disabled:vm.pager.currentPage === 1}">Previous</md-button>
+    <md-button class="md-raised md-primary pagination-number" ng-click="vm.setPage(page)" ng-repeat="page in vm.pager.pages" ng-class="{active:vm.pager.currentPage === page}">{{page}}</md-button>
+    <md-button class="md-raised md-primary" ng-click="vm.setPage(vm.pager.currentPage + 1)" ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">Next</md-button>
+    <md-button class="md-raised md-primary" ng-click="vm.setPage(vm.pager.totalPages)" ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">Last</md-button>
+  </div>
+  <!--<ul ng-if="vm.pager.pages.length" layout="row" flex class="pagination">-->
+    <!--<li ng-class="{disabled:vm.pager.currentPage === 1}">-->
+      <!--<a ng-click="vm.setPage(1)">First</a>-->
+    <!--</li>-->
+    <!--<li ng-class="{disabled:vm.pager.currentPage === 1}">-->
+      <!--<a ng-click="vm.setPage(vm.pager.currentPage - 1)">Previous</a>-->
+    <!--</li>-->
+    <!--<li ng-repeat="page in vm.pager.pages" ng-class="{active:vm.pager.currentPage === page}">-->
+      <!--<a ng-click="vm.setPage(page)">{{page}}</a>-->
+    <!--</li>-->
+    <!--<li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">-->
+      <!--<a ng-click="vm.setPage(vm.pager.currentPage + 1)">Next</a>-->
+    <!--</li>-->
+    <!--<li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">-->
+      <!--<a ng-click="vm.setPage(vm.pager.totalPages)">Last</a>-->
+    <!--</li>-->
+  <!--</ul>-->
+</div>

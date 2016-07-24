@@ -1,0 +1,75 @@
+<md-content layout="column">
+  <h2 align="center">Thêm Sửa Môn Học</h2>
+  <form>
+    <md-input-container class="md-block">
+      <label>ID Syllabus</label>
+      <input type="text" ng-model="dm.syllabus.id">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <label>Syllabus Name</label>
+      <input type="text" ng-model="dm.syllabus.name">
+    </md-input-container>
+
+    <div flex>
+      <label><b>Assessment List</b></label>
+
+      <div flex layout="row">
+        <md-input-container flex class="md-block">
+          <label>Assessment ID</label>
+          <input type="text" ng-model="dm.assessment_id">
+        </md-input-container>
+
+        <md-button ng-click="dm.addAssessment()" class="md-fab md-primary md-mini">
+          <md-icon md-svg-icon="../../assets/ic_add_black_24px.svg"></md-icon>
+        </md-button>
+      </div>
+
+      <div flex ng-repeat="assessment in dm.syllabus.assessment_list">
+        <div flex="50">{{assessment.id}}</div>
+      </div>
+
+    </div>
+
+    <br>
+    <div flex>
+      <label><b>Goal List</b></label>
+      <div layout="row">
+        <md-input-container flex="50" class="md-block">
+          <label>Goal ID</label>
+          <input type="text" ng-model="dm.goal.goal_id">
+        </md-input-container>
+
+        <md-input-container flex="50" class="md-block">
+          <label>Goal Weight</label>
+          <input type="number" ng-model="dm.goal.goal_weight">
+        </md-input-container>
+
+        <md-button class="md-fab md-primary md-mini">
+          <md-icon md-svg-icon="../../assets/ic_add_black_24px.svg"></md-icon>
+        </md-button>
+      </div>
+
+      <div ng-hide="dm.syllabus.goal_list == null" flex>
+        <div flex="15">ID</div>
+        <div flex="35">Name</div>
+        <div flex="10">Weight</div>
+      </div>
+
+      <div flex ng-repeat="goal in dm.syllabus.goal_list">
+        <div flex="15">{{ goal.id }}</div>
+        <div flex="35">{{ goal.name }}</div>
+        <div flex="10">{{ goal.weight }}</div>
+      </div>
+
+    </div>
+
+    <div flex>
+      <div align="center">
+        <md-button class="md-raised md-primary">ADD</md-button>
+        <md-button class="md-raised md-warn">Cancel</md-button>
+      </div>
+    </div>
+
+  </form>
+</md-content>

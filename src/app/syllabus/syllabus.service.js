@@ -8,7 +8,7 @@
     .module('cdio')
     .factory('syllabusElasticsearch', syllabusElasticsearch);
 
-  function syllabusElasticsearch() {
+  function syllabusElasticsearch($q) {
     var service = {
       listSyllabuses: listSyllabuses,
       getSyllabus: getSyllabus,
@@ -30,6 +30,7 @@
         size: size
       }).then(function (resp) {
         var hits = resp.hits;
+        console.log(resp);
         deferred.resolve(hits);
       }, function (err) {
         console.trace(err.message);
@@ -102,15 +103,15 @@
     function deleteSyllabus(sid) {
       var client = elasticsearch.Client();
       var deferred = $q.defer();
-      checkGoal(sid).then(function (resp) {
+      checkSyllabus(sid).then(function (resp) {
         if (resp == true) {
           client.delete({
             index: 'syllabuses',
             type: 'syllabus',
             id: sid
           }).then(function (data) {
-            deferred.resolve(data);
             console.log('Done deleteSyllabus Goal');
+            deferred.resolve(data);
           }, function (err) {
             console.log('Error deleteSyllabus Goal');
             console.trace(err.message);

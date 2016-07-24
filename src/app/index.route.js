@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -19,17 +19,25 @@
         templateUrl: 'app/add_class/add_class.html',
         controller: 'AddClassController',
         controllerAs: 'add'
-      }).state('goals', {
+      })
+      .state('goals', {
         url: '/goals',
         templateUrl: 'app/goals/goals.html',
         controller: 'GoalsController',
         controllerAs: 'goals'
-      }).state('syllabus', {
-      url: '/syllabus',
-      templateUrl: 'app/syllabus/syllabus.html',
-      controller: 'SyllabusController',
-      controllerAs: 'syl'
-    });
+      })
+      .state('syllabus', {
+        url: '/syllabus',
+        templateUrl: 'app/syllabus/syllabus.html',
+        controller: 'SyllabusController',
+        controllerAs: 'syl'
+      })
+      .state('demo', {
+        url: '/demo',
+        templateUrl: 'app/demo/demo.html',
+        controller: 'DemoController',
+        controllerAs: 'dm'
+      });
 
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
